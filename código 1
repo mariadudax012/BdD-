@@ -128,9 +128,3 @@ def menu():
 
 menu() 
  
-
-    else:
-        print("Opção inválida!")
-
-
-conexao.close()
