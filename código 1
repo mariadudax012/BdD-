@@ -1,0 +1,136 @@
+import os
+import shutil
+
+
+def criar_arquivo(nome):
+    try:
+        with open(nome, 'x'):
+            print(f"Arquivo '{nome}' criado com sucesso!")
+    except FileExistsError:
+        print("Erro: arquivo já existe.")
+
+def ler_arquivo(nome):
+    if os.path.exists(nome):
+        with open(nome, 'r') as f:
+            print("\nConteúdo do arquivo:")
+            print(f.read())
+    else:
+        print("Arquivo não encontrado.")
+
+def escrever_arquivo(nome):
+    if os.path.exists(nome):
+        with open(nome, 'a') as f:
+            texto = input("Digite o texto para adicionar: ")
+            f.write(texto + "\n")
+        print("Texto adicionado!")
+    else:
+        print("Arquivo não encontrado.")
+
+def sobrescrever_arquivo(nome):
+    if os.path.exists(nome):
+        with open(nome, 'w') as f:
+            texto = input("Digite o novo conteúdo: ")
+            f.write(texto)
+        print("Arquivo sobrescrito!")
+    else:
+        print("Arquivo não encontrado.")
+
+def renomear_arquivo(nome, novo_nome):
+    if os.path.exists(nome):
+        os.rename(nome, novo_nome)
+        print(f"Arquivo renomeado para '{novo_nome}'")
+    else:
+        print("Arquivo não encontrado.")
+
+def copiar_arquivo(origem, destino):
+    if os.path.exists(origem):
+        shutil.copy(origem, destino)
+        print("Arquivo copiado com sucesso!")
+    else:
+        print("Arquivo de origem não encontrado.")
+
+def mover_arquivo(origem, destino):
+    if os.path.exists(origem):
+        shutil.move(origem, destino)
+        print("Arquivo movido com sucesso!")
+    else:
+        print("Arquivo de origem não encontrado.")
+
+def deletar_arquivo(nome):
+    if os.path.exists(nome):
+        os.remove(nome)
+        print("Arquivo deletado!")
+    else:
+        print("Arquivo não encontrado.")
+
+def listar_arquivos():
+    print("\nArquivos no diretório:")
+    for arquivo in os.listdir():
+        print(arquivo)
+
+
+def menu():
+    while True:
+        print("\n===== GERENCIADOR DE ARQUIVOS =====")
+        print("1 - Criar arquivo")
+        print("2 - Ler arquivo")
+        print("3 - Escrever (adicionar)")
+        print("4 - Sobrescrever")
+        print("5 - Renomear")
+        print("6 - Copiar")
+        print("7 - Mover")
+        print("8 - Deletar")
+        print("9 - Listar arquivos")
+        print("0 - Sair")
+
+        opcao = input("Escolha: ")
+
+        if opcao == '1':
+            criar_arquivo(input("Nome do arquivo: "))
+
+        elif opcao == '2':
+            ler_arquivo(input("Nome do arquivo: "))
+
+        elif opcao == '3':
+            escrever_arquivo(input("Nome do arquivo: "))
+
+        elif opcao == '4':
+            sobrescrever_arquivo(input("Nome do arquivo: "))
+
+        elif opcao == '5':
+            nome = input("Nome atual: ")
+            novo = input("Novo nome: ")
+            renomear_arquivo(nome, novo)
+
+        elif opcao == '6':
+            origem = input("Arquivo de origem: ")
+            destino = input("Destino: ")
+            copiar_arquivo(origem, destino)
+
+        elif opcao == '7':
+            origem = input("Arquivo de origem: ")
+            destino = input("Destino: ")
+            mover_arquivo(origem, destino)
+
+        elif opcao == '8':
+            deletar_arquivo(input("Nome do arquivo: "))
+
+        elif opcao == '9':
+            listar_arquivos()
+
+        elif opcao == '0':
+            print("Encerrando...")
+            break
+
+        else:
+            print("Opção inválida!")
+
+
+menu() 
+ 
+
+    else:
+        print("Opção inválida!")
+
+
+conexao.close()
